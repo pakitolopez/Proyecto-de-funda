@@ -2,37 +2,37 @@
 #include <vector>
 #include <string>
 #include <limits>
-#include <iomanip> // Para dar formato de dos decimales a los colones
+#include <iomanip> 
 
 using namespace std;
 
-// Estructura para el catálogo de productos/repuestos
+
 struct Producto {
     int codigo;
     string nombre;
     double precioColones;
 };
 
-// Estructura que representa los datos del cliente
+
 struct Cliente {
     string placa;
     string nombre;
     string cedula;
-    string estado; // Revision / Reparacion / Barado
+    string estado; 
     string telefono;
     string fechaEntrada;
     string detalle;
-    string repuestosAsignados; // Lista de repuestos instalados
-    double totalPagar;         // Cuenta acumulada en colones
+    string repuestosAsignados; 
+    double totalPagar;
 };
 
-// limpiar
+
 void limpiarEntrada() {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
-// menú principal
+
 void mostrarMenu() {
     cout << "\n==================================================\n";
     cout << "                    GRUPO 6                       \n";
@@ -48,9 +48,9 @@ void mostrarMenu() {
 }
 
 int main() {
-    // catálogo de repuestos y accesorios de el taller
+
     vector<Producto> catalogo = {
-        // --- REPUESTOS GENERALES Y MANTENIMIENTO ---
+        
         {101, "Aceite para Motor 20W50 (Litro)", 6500.0},
         {102, "Filtro de Aceite", 4500.0},
         {103, "Filtro de Aire", 8500.0},
@@ -80,7 +80,7 @@ int main() {
         mostrarMenu();
         cin >> opcion;
 
-        // caracter no valido
+     
         if (cin.fail()) {
             cout << "\n[ERROR] Entrada invalida. Por favor, ingrese un numero del 1 al 6.\n";
             limpiarEntrada();
@@ -96,7 +96,7 @@ int main() {
 
         switch (opcion) {
         case 1: {
-            // 1. REGISTRO DE CLIENTES
+           
             Cliente nuevo;
             cout << "\n--- REGISTRO DE NUEVO CLIENTE ---\n";
 
@@ -143,7 +143,7 @@ int main() {
             break;
         }
         case 2: {
-            // 2. ACTUALIZACION DEL ESTADO
+            
             cout << "\n--- ACTUALIZACION DE ESTADO ---\n";
             if (listaClientes.empty()) {
                 cout << "[ALERTA] No hay clientes registrados.\n";
@@ -184,7 +184,7 @@ int main() {
             break;
         }
         case 3: {
-            // 3. INVENTARIOS DE REPUESTOS y AGREGAR AL CLIENTE
+            
             cout << "\n--- ASIGNAR PRODUCTO O REPUESTO DE MOTOR ---\n";
             if (listaClientes.empty()) {
                 cout << "[ALERTA] No hay clientes registrados.\n";
@@ -216,7 +216,7 @@ int main() {
                         if (catalogo[j].codigo == codigoBuscar) {
                             productoEncontrado = true;
 
-                            // Asignar el nombre del producto en la lista del cliente
+                            
                             if (listaClientes[i].repuestosAsignados == "Ninguno") {
                                 listaClientes[i].repuestosAsignados = catalogo[j].nombre;
                             }
@@ -224,10 +224,10 @@ int main() {
                                 listaClientes[i].repuestosAsignados += " + " + catalogo[j].nombre;
                             }
 
-                            // Actualizar el historial/detalle agregando el cambio de pieza
+                            
                             listaClientes[i].detalle += " (Se instalo: " + catalogo[j].nombre + ")";
 
-                            // Sumar el costo al total
+                            
                             listaClientes[i].totalPagar += catalogo[j].precioColones;
 
                             cout << "\n>> ¡" << catalogo[j].nombre << " agregado con éxito!\n";
@@ -246,7 +246,7 @@ int main() {
             break;
         }
         case 4: {
-            // 4. VER CATÁLOGO COMPLETO (GENERAL Y MOTOR)
+            
             cout << "\n====================================================================\n";
             cout << "            CATALOGO GENERAL Y REPUESTOS DE MOTOR (c)               \n";
             cout << "====================================================================\n";
@@ -261,7 +261,7 @@ int main() {
             break;
         }
         case 5: {
-            // 5. VER CLIENTES REGISTRADOS
+            
             cout << "\n==================================================\n";
             cout << "           LISTA DE CLIENTES EN EL TALLER         \n";
             cout << "==================================================\n";
